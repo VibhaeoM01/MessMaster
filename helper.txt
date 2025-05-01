@@ -1,0 +1,6 @@
+Package	Use
+react-toastify	Toast notifications (e.g., "Booking successful!")
+react-icons	Icon collection
+uuid	Generate unique IDs for bookings/comments
+
+npm install react-toastify react-icons uuid
