@@ -32,10 +32,10 @@ function HeroSection() {
 
   return (
     <div className="heroSection">
-      <div className="overlay" />
+      {/* <div className="container" /> */}
       <Slider {...settings}>
         {slides.map((slide, index) => (
-          <div className="container" key={index}>
+          <div className="slide" key={index}>
             <h2>{slide.title}</h2>
             <p>{slide.description}</p>
           </div>

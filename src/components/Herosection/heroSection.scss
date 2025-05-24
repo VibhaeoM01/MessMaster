@@ -1,24 +1,27 @@
 .heroSection {
-  background-color: black;
+  background-color: rgb(124, 122, 122);
   color: white;
   padding: 4rem 0;
   opacity: 0.8ww;
-
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 60vh;
-  }
+  height: 40%;
+  
+  
 
   .slide {
     background-color: rgba(255, 255, 255, 0.1); // Transparent white box
+    height: 200px;
     color: white;
-    padding: 2rem 3rem;
-    border-radius: 20px;
-    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    // width: 75%;
+    // border: 1px solid bla;
+    padding: 2rem 3rem;  
+    width: 300px;
+    // max-width: 700px;
     text-align: center;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 
     h2 {
       font-size: 2rem;

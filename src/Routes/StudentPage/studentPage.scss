@@ -3,16 +3,18 @@
   max-width: 1200px;
   margin: 0 auto;
 
-  h1 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #333;
+  .cards{
+      display: flex;
+      // background-color: red;
   }
-
-  .menu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    justify-items: center;
+  .all-menus{
+    padding: 10px;
+    margin: 10px;
+    th{
+      padding: 10px;
+    }
+    td{
+      padding: 10px;
+    }
   }
 }

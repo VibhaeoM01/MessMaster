@@ -1,4 +1,11 @@
-.homePage{
+html, body {
+  height: auto; 
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;  
+  .homePage{
     background-color: rgb(241, 241, 241);
     height: 100vh;
+}
 }

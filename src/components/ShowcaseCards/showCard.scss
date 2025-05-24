@@ -1,0 +1,32 @@
+.main {
+  margin: 100px 400px;
+
+  .showCard {
+    display: grid;  
+    grid-template-columns: repeat(3, 1fr);  
+    grid-template-rows: repeat(2, auto);  
+    gap: 20px; 
+    height: auto;  
+
+    .grids {
+      font-size:25px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      height: 150px;
+      border-radius: 20px;
+      background-color: rgb(245, 149, 112);
+      color: white;
+      padding: 1rem;  
+      text-align: center;  
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+      transition: all 0.5s ; 
+      
+      &:hover {
+        background-color: #ff944d;  
+        transform: scale(1.05);
+        // transition: all eas  e-in;     
+      }
+    }
+  }
+}
