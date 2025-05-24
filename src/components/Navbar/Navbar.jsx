@@ -9,7 +9,7 @@ function Navbar() {
     <div className="navbar">
       <div className="navbar__logo">
         
-        <Link to="/"><img className="logo" src="https://ik.imagekit.io/6ilngyaqa/1747940188815-logo_1_zqcjbw-TF.jpg" alt="logo"/> </Link>
+        <Link to="/"><img className="logo" src="\public\assets\logo.jpg" alt="logo"/> </Link>
       </div>
       <div className="buttons">
         

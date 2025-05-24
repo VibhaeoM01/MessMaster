@@ -3,42 +3,76 @@ import axios from "axios";
 import "./messPage.scss";
 
 function MessPage() {
+  const [menu, setMenus] = useState([]);
   const [Allmenus, setAllmenus] = useState([]);
-  const [mealCounts, setMealCounts] = useState(null); 
-  const [Day,setDay] = useState("Monday");
-  const [meal,setMeal] = useState("breakfast");
-  const [food,setFood]=useState('');
+  const [mealCounts, setMealCounts] = useState(null);
+  const [day, setDay] = useState("Monday");
+  const [mealType, setMeal] = useState("breakfast");
+  const [items, setitems] = useState("");
 
-    useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem("token");
         const config = token
           ? { headers: { Authorization: `Bearer ${token}` } }
           : {};
-
-        const allMenusRes = await axios.get("http://localhost:5000/api/menus/all", config);
+        const allMenusRes = await axios.get(
+          "http://localhost:5000/api/menus/all",
+          config
+        );
         setAllmenus(Array.isArray(allMenusRes.data) ? allMenusRes.data : []);
 
-        const mealCountsRes = await axios.get("http://localhost:5000/api/feedbacks/count", config);
+        const mealCountsRes = await axios.get(
+          "http://localhost:5000/api/feedbacks/count",
+          config
+        );
         setMealCounts(mealCountsRes.data.data);
 
-        // const updateMenu=await axios.post("http://localhost:5000/api/menus/update")
-      } catch (err) {
+
+        const todayRes = await axios.get(
+          axios.get("http://localhost:5000/api/menus", config)
+        );
+        setMenus(todayRes.data);
+      } 
+      catch (err) {
         setAllmenus([]);
         setMealCounts(null);
       }
     };
     fetchData();
   }, []);
-  const handleSubmit =async (e)=>{
-   e.preventDefault();
-   const res=await axios.post(`http://localhost:5000/api/menus/update/${menu._id}`)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+     const menu = Allmenus.find(
+    (m) => m.day === day && m.mealType === mealType
+  );
+
+  if (!menu) {
+    alert("Menu not found for the selected day and meal type.");
+    return;
   }
+    try {
+      const token = localStorage.getItem("token");
+const config = token
+  ? { headers: { Authorization: `Bearer ${token}` } }
+  : {};
+
+const res = await axios.put(
+  `http://localhost:5000/api/menus/update/${menu._id}`,
+  { day, mealType, items },
+  config
+);
+      console.log("Updated:", res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="messPage">
-        <div className="all-menus">
+      <div className="all-menus">
         <h2>Complete Menu</h2>
         {Allmenus.length > 0 ? (
           <table
@@ -83,24 +117,49 @@ function MessPage() {
       <div className="update-Menu">
         <h2>Update Menu</h2>
         <div className="fields">
-         <form onSubmit={handleSubmit}>
-           <select value={Day} onChange={e=>setDay(e.target.value)}>
-            <option name="Monday" id="">Monday</option>
-            <option name="Tuesday" id="">Tuesday</option>
-            <option name="Wednesday" id="">Webnesday</option>
-            <option name="Thursday" id="">Thursday</option>
-            <option name="Friday" id="">Friday</option>
-            <option name="Saturday" id="">Saturday</option>
-          </select>
-          <select value={meal} onChange={e=>setMeal(e.target.value)}>
-            <option name="breakfast" id="">BreakFast</option>
-            <option name="lunch" id="">Lunch</option>
-            <option name="snacks" id="">Snacks</option>
-            <option name="dinner" id="">Dinner</option>
-          </select>
-          <input type="text" value={food} required onChange={(e)=>setFood(e.target.value)}/>
-          <button>Submit</button>
-         </form>
+          <form onSubmit={handleSubmit}>
+            <select value={day} onChange={(e) => setDay(e.target.value)}>
+              <option name="Monday" id="">
+                Monday
+              </option>
+              <option name="Tuesday" id="">
+                Tuesday
+              </option>
+              <option name="Wednesday" id="">
+                Webnesday
+              </option>
+              <option name="Thursday" id="">
+                Thursday
+              </option>
+              <option name="Friday" id="">
+                Friday
+              </option>
+              <option name="Saturday" id="">
+                Saturday
+              </option>
+            </select>
+            <select value={mealType} onChange={(e) => setMeal(e.target.value)}>
+              <option name="breakfast" id="">
+                BreakFast
+              </option>
+              <option name="lunch" id="">
+                Lunch
+              </option>
+              <option name="snacks" id="">
+                Snacks
+              </option>
+              <option name="dinner" id="">
+                Dinner
+              </option>
+            </select>
+            <input
+              type="text"
+              value={items}
+              required
+              onChange={(e) => setitems(e.target.value)}
+            />
+            <button>Submit</button>
+          </form>
         </div>
       </div>
     </div>

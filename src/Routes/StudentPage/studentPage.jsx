@@ -9,7 +9,7 @@ function StudentPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
+   useEffect(() => {
     const fetchMenus = async () => {
       try {
         const token = localStorage.getItem("token");
@@ -35,7 +35,19 @@ function StudentPage() {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
-  if (!menus.length) return <div>No menus found</div>;
+  const mealTypes = ["breakfast", "lunch", "snacks", "dinner"];
+  if (!menus || menus.length === 0) {
+    return (
+      <div className="menuCards">
+        {mealTypes.map(meal => (
+          <div className="menuCard empty" key={meal}>
+            <h2>{meal.charAt(0).toUpperCase() + meal.slice(1)}</h2>
+            <p>No menu for today</p>
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className="studentPage">

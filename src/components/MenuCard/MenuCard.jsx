@@ -8,6 +8,13 @@ function MenuCard({ menu }) {
   const [comment, setComment] = useState("");
   const [success, setSuccess] = useState(null);
 
+  const photos = {
+    breakfast: { img: "../public/assets/images/menu/1.jpg" },
+    lunch: { img: "../public/assets/images/menu/2.jpg" },
+    snacks: { img: "../public/assets/images/menu/3.jpg" },
+    dinner: { img: "../public/assets/images/menu/1.jpg" }
+  };
+
   if (!menu) return <div>No menu found</div>;
 
   const cutoffTime = menu.cutoffTime ? new Date(menu.cutoffTime) : null;
@@ -17,6 +24,7 @@ function MenuCard({ menu }) {
   const handleChoice = async (willEat) => {
     if (!isWindowOpen) {
       setError("Choice window is closed for this meal.");
+      setTimeout(() => setError(null), 3000);
       return;
     }
     try {
@@ -31,15 +39,18 @@ function MenuCard({ menu }) {
         }
       );
       setChoice(willEat);
+      setError(null);
     } catch (err) {
       console.log(err);
       setError("Failed to submit choice");
+      setTimeout(() => setError(null), 3000);
     }
   };
 
   const handleCommentSubmit = async () => {
     if (comment === "") {
       setError("Comment cannot be empty.");
+      setTimeout(() => setError(null), 3000);
       return;
     }
     try {
@@ -56,7 +67,7 @@ function MenuCard({ menu }) {
       setError(null);
       setComment("");
       setSuccess("Comment submitted!");
-      setTimeout(() => setError(null), 2000);
+      setTimeout(() => setSuccess(null), 3000);
     } catch (err) {
       if (err.response && err.response.status === 403) {
         setError(err.response.data.message); 
@@ -64,12 +75,19 @@ function MenuCard({ menu }) {
         setError("Failed to submit comment");
       }
       setSuccess(null);
+      setTimeout(() => setError(null), 3000);
     }
   };
 
   return (
     <div className="menuCard">
-      <img className="image" src={menu.image} alt={`${menu.mealType}`} />
+      <div className="image-container">
+        <img 
+          className="image" 
+          src=""
+          alt=""
+        />
+      </div>
       <h2 className="mealType">{menu.mealType}</h2>
       <div className="items">
         {Array.isArray(menu.items) && menu.items.length > 0 ? (
@@ -107,7 +125,7 @@ function MenuCard({ menu }) {
           placeholder="Enter text here..."
         ></textarea>
         <button onClick={handleCommentSubmit}>Submit</button>
-        {success && <p className="message success">{success}</p>}
+        {success && <div className="messagesuccess">{success}</div>}
       </div>
     </div>
   );
