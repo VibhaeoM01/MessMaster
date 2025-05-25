@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./messPage.scss";
+import { useNavigate } from "react-router-dom";
 
 function MessPage() {
   const [menu, setMenus] = useState([]);
@@ -9,6 +10,7 @@ function MessPage() {
   const [day, setDay] = useState("Monday");
   const [mealType, setMeal] = useState("breakfast");
   const [items, setitems] = useState("");
+  const nav=useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -72,6 +74,7 @@ const res = await axios.put(
 
   return (
     <div className="messPage">
+      <div className="container"> <div className="stats" onClick={()=>nav('/mess_manager/stats')} >Stats</div></div>
       <div className="all-menus">
         <h2>Complete Menu</h2>
         {Allmenus.length > 0 ? (

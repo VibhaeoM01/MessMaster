@@ -18,6 +18,14 @@
         border-radius: 10px;
         gap: 20px;
         text-align: center;
+        .hello{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            .name{
+                font-weight: bold;
+            }
+        }
         button { 
             all: unset; /* Resets all default styles */
             height: 30px;

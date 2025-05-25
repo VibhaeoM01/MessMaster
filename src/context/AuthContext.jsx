@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import apiRequest from "../lib/apiRequest"; // Your axios instance
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
@@ -7,10 +8,11 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token,setToken]=useState(null);
   const [loading, setLoading] = useState(true); 
- 
+  const nav=useNavigate(); 
   useEffect(() => {
     const verifyUser = async () => {
       const token = localStorage.getItem("token");
+      // console.log(token);
       if (token) {
         try {
           const res = await apiRequest.get("/auth/me", {
@@ -44,8 +46,9 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    setUser(null);
+    setUser(null);  
     setToken(null);
+    nav('/');
   };
 
   return (

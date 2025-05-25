@@ -14,32 +14,32 @@
     const handleSubmit = async (e) => {
       e.preventDefault();
       setError(null); 
-      // try {
-      //   const res = await apiRequest.post("/auth/login", { email, password });
-      //   // localStorage.setItem('token', res.data.token);
-      //   // localStorage.setItem('user', JSON.stringify(res.data.token));
-      //   setUser(res.data.user, res.data.token);
-      //   navigate(`/${res.data.user.role}`); 
-      // } catch (err) {
-      //    console.log("Login error:", err.response);       
-      //   setError(err.response?.data?.message || "Login failed");
-      // }
-     try {
-  const res = await apiRequest.post("/auth/login", { email, password });
-  console.log("Login success:", res.data); // ✅ Log success
-  login(res.data.user, res.data.token); // From context
-  navigate(`/${res.data.user.role}`);
-} catch (err) {
-  console.error("Full error object:", err); // ✅ Log everything
-  if (err.response) {
-    console.error("Backend responded with:", err.response.data); // ✅
-    setError(err.response.data.message || "Login failed");
-  } else if (err.request) {
-    setError("No response received from the server.");
-  } else {
-    setError("An error occurred while setting up the request.");
-  }
-}
+      try {
+        const res = await apiRequest.post("/auth/login", { email, password });
+        // localStorage.setItem('token', res.data.token);
+        // localStorage.setItem('user', JSON.stringify(res.data.token));
+        login(res.data.user, res.data.token);
+        navigate(`/${res.data.user.role}`); 
+      } catch (err) {
+         console.log("Login error:", err.response);       
+        setError(err.response?.data?.message || "Login failed");
+      }
+//      try {
+//   const res = await apiRequest.post("/auth/login", { email, password });
+//   console.log("Login success:", res.data); // ✅ Log success
+//   login(res.data.user, res.data.token); // From context
+//   navigate(`/${res.data.user.role}`);
+// } catch (err) {
+//   console.error("Full error object:", err); // ✅ Log everything
+//   if (err.response) {
+//     console.error("Backend responded with:", err.response.data); // ✅
+//     setError(err.response.data.message || "Login failed");
+//   } else if (err.request) {
+//     setError("No response received from the server.");
+//   } else {
+//     setError("An error occurred while setting up the request.");
+//   }
+// }
 
     };
 
