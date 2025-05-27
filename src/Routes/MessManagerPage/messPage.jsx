@@ -10,7 +10,7 @@ function MessPage() {
   const [day, setDay] = useState("Monday");
   const [mealType, setMeal] = useState("breakfast");
   const [items, setitems] = useState("");
-  const nav=useNavigate();
+  const nav = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,13 +31,11 @@ function MessPage() {
         );
         setMealCounts(mealCountsRes.data.data);
 
-
         const todayRes = await axios.get(
           axios.get("http://localhost:5000/api/menus", config)
         );
         setMenus(todayRes.data);
-      } 
-      catch (err) {
+      } catch (err) {
         setAllmenus([]);
         setMealCounts(null);
       }
@@ -47,25 +45,23 @@ function MessPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-     const menu = Allmenus.find(
-    (m) => m.day === day && m.mealType === mealType
-  );
+    const menu = Allmenus.find((m) => m.day === day && m.mealType === mealType);
 
-  if (!menu) {
-    alert("Menu not found for the selected day and meal type.");
-    return;
-  }
+    if (!menu) {
+      alert("Menu not found for the selected day and meal type.");
+      return;
+    }
     try {
       const token = localStorage.getItem("token");
-const config = token
-  ? { headers: { Authorization: `Bearer ${token}` } }
-  : {};
+      const config = token
+        ? { headers: { Authorization: `Bearer ${token}` } }
+        : {};
 
-const res = await axios.put(
-  `http://localhost:5000/api/menus/update/${menu._id}`,
-  { day, mealType, items },
-  config
-);
+      const res = await axios.put(
+        `http://localhost:5000/api/menus/update/${menu._id}`,
+        { day, mealType, items },
+        config
+      );
       console.log("Updated:", res.data);
     } catch (err) {
       console.log(err);
@@ -74,7 +70,27 @@ const res = await axios.put(
 
   return (
     <div className="messPage">
-      <div className="container"> <div className="stats" onClick={()=>nav('/mess_manager/stats')} >Stats</div></div>
+            <div className="preBookcount">
+        <h2>Pre-Bookings</h2>
+        {mealCounts ? (
+          <ul>
+            {["breakfast", "lunch", "snacks", "dinner"].map((meal) => (
+              <li key={meal}>
+                <span className="names">{meal.charAt(0).toUpperCase() + meal.slice(1)}:{" "}</span>
+                {mealCounts[meal]?.willEat ?? 0}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No data</p>
+        )}
+      </div>
+      <div className="container">
+        {" "}
+        <div className="stats" onClick={() => nav("/mess_manager/stats")}>
+          Stats
+        </div>
+      </div>
       <div className="all-menus">
         <h2>Complete Menu</h2>
         {Allmenus.length > 0 ? (
@@ -165,6 +181,8 @@ const res = await axios.put(
           </form>
         </div>
       </div>
+
+
     </div>
   );
 }

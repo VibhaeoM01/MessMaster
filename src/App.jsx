@@ -56,6 +56,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Login from './Routes/Login/Login';
 import Signup from './Routes/Signup/signup';
+import Footer from './components/Footer/Footer';
 
 function App() {
   const { user, loading } = useAuth();
@@ -74,6 +75,7 @@ function App() {
         <Route path='/student' element={<StudentPage />} />
         <Route path='/mess_manager' element={<MessPage />} />
       </Routes>
+      <Footer/>
     </>
   );
 }

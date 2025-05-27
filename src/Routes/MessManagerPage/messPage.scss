@@ -55,4 +55,19 @@
       }
     }
   }
+  .preBookcount{
+    margin: 60px 20px;
+    ul{
+      display: flex;
+      gap: 20px;
+      padding: 10px;
+      li{
+        padding: 5px;
+        display: flex;
+        .names{
+          font-weight: bold;
+        }
+      }
+    }
+  }
 }
