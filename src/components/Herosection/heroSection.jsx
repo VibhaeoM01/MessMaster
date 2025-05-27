@@ -31,7 +31,8 @@ function HeroSection() {
   };
 
   return (
-    <div className="heroSection">
+    <section id="home">
+      <div className="heroSection">
       {/* <div className="container" /> */}
       <Slider {...settings}>
         {slides.map((slide, index) => (
@@ -42,6 +43,7 @@ function HeroSection() {
         ))}
       </Slider>
     </div>
+    </section>
   );
 }
 

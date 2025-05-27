@@ -13,8 +13,8 @@ function ShowCard() {
     },
   ];
   return (
-    <div className="main">
-        <h1>Features</h1>
+    <section id="features" className="main">
+        <div className="heading">Features</div>
       <div className="showCard">
         {data.map((item, key) => (
           <div className="grids" key={key}>
@@ -23,7 +23,7 @@ function ShowCard() {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
 

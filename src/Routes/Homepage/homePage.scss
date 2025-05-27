@@ -4,7 +4,9 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;  
-  .homePage{
-    height: 100vh;
+  .homePage {
+  min-height: 100vh;
+  height: auto;
+  overflow: visible;
 }
 }

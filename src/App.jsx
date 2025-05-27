@@ -70,12 +70,13 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
+         {/* <Route path="/contact" element={<Contact />} /> */}
         <Route path="/login" element={!user ? <Login /> : <Navigate to={`/${user.role}`} />} />
         <Route path="/signup" element={!user ? <Signup /> : <Navigate to={`/${user.role}`} />} />
         <Route path='/student' element={<StudentPage />} />
         <Route path='/mess_manager' element={<MessPage />} />
       </Routes>
-      <Footer/>
+      
     </>
   );
 }

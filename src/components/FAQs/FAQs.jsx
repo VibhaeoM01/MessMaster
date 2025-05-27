@@ -34,14 +34,15 @@ function FAQs() {
   };
 
   return (
-    <div className="fAQs">
+    <section id="Faqs">
+      <div className="fAQs">
       <div className="container">
         <div>
           <h2>Frequently Asked Questions</h2>
         </div>
         {faqData.map((faq, idx) => (
           <div key={idx}>
-            <button onClick={() => toggle(idx)}>
+            <button onClick={() => toggle(idx)} className="faq">
               {faq.question}
               <span className="logo" style={{ marginLeft: 8 }}>
                 {openIndices.includes(idx) ? "▲" : "▼"}
@@ -57,6 +58,7 @@ function FAQs() {
         
       </div>
     </div>
+    </section>
   );
 }
 

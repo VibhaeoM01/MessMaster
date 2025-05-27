@@ -1,4 +1,6 @@
+import Contactusform from "../../components/ContactUs/contactusform";
 import FAQs from "../../components/FAQs/FAQs";
+import Footer from "../../components/Footer/Footer";
 import HeroSection from "../../components/Herosection/heroSection";
 import ShowCard from "../../components/ShowcaseCards/ShowCard";
 import "./homePage.scss";
@@ -9,8 +11,9 @@ function HomePage() {
     <div className="homePage">
         <HeroSection/>
         <ShowCard/>
+        <Contactusform/>
         <FAQs/>
-        {/* <Foote  /> */}
+        <Footer/>
     </div>
   );
 }
