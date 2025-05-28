@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
-import "./Footer.scss";
+import "./footer.scss";
 
 function Footer() {
   return (
