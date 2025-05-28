@@ -1,12 +1,13 @@
-html, body {
+html,
+body {
   height: auto;
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;  
+  overflow-x: hidden;
   .homePage {
-  min-height: 100vh;
-  height: auto; 
-  overflow: visible;
-}
+    min-height: 100vh;
+    height: auto;
+    overflow: visible;
+  }
 }
