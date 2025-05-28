@@ -1,5 +1,5 @@
   import { useState } from "react";
-  import "./login.scss";
+  import "./Login.scss";
   import apiRequest from "../../lib/apiRequest";
   import { useNavigate } from "react-router-dom";
   import { useAuth } from "../../context/AuthContext";
