@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import "./navbar.scss";
+import "./Navbar.scss";
 import { Link } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import { useAuth } from "../../context/AuthContext";
