@@ -10,5 +10,8 @@ export default defineConfig({
         additionalData: `@import "./src/styles/variables.scss";`
       }
     }
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.scss']
   }
 })
