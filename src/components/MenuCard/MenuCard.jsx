@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import "./menuCard.scss";
+import "./MenuCard.scss";
 
 function MenuCard({ menu }) {
   const [choice, setChoice] = useState(true);
