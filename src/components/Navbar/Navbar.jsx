@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./navbar.scss";
 import { Link } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
 import { useAuth } from "../../context/AuthContext";
 
 function Navbar() {
@@ -12,6 +13,11 @@ function Navbar() {
       <div className="navbar__logo">
         
         <Link to="/"><img className="logo" src="\public\assets\logo.jpg" alt="logo"/> </Link>
+      </div>
+      <div className="scrolllinks">
+        <ScrollLink className="scroll" to="Features" duration={800} smooth={true}>Features</ScrollLink>
+        <ScrollLink className="scroll" to="Faqs" duration={800} smooth={true}>FAQs</ScrollLink>
+        <ScrollLink className="scroll" to="contact" duration={800} smooth={true}>Contact Us</ScrollLink>
       </div>
      <div className="buttons">
      

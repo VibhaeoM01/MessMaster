@@ -10,6 +10,7 @@ function MessPage() {
   const [day, setDay] = useState("Monday");
   const [mealType, setMeal] = useState("breakfast");
   const [items, setitems] = useState("");
+  const [success,setsuccess]=useState(false);
   const nav = useNavigate();
 
   useEffect(() => {
@@ -32,7 +33,8 @@ function MessPage() {
         setMealCounts(mealCountsRes.data.data);
 
         const todayRes = await axios.get(
-          axios.get("http://localhost:5000/api/menus", config)
+          "http://localhost:5000/api/menus",
+          config
         );
         setMenus(todayRes.data);
       } catch (err) {
@@ -45,8 +47,14 @@ function MessPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const menu = Allmenus.find((m) => m.day === day && m.mealType === mealType);
-
+ 
+   const menu = Allmenus.find(
+  (m) =>
+    m.day.toLowerCase() === day.toLowerCase() &&
+    m.mealType.toLowerCase() === mealType.toLowerCase()
+);  
+    // const menu = Allmenus.find((m) => m.day === day && m.mealType === mealType);
+    console.log(menu);
     if (!menu) {
       alert("Menu not found for the selected day and meal type.");
       return;
@@ -63,6 +71,8 @@ function MessPage() {
         config
       );
       console.log("Updated:", res.data);
+      setsuccess(true);
+      setTimeout(() => setsuccess(false), 3000);
     } catch (err) {
       console.log(err);
     }
@@ -70,13 +80,15 @@ function MessPage() {
 
   return (
     <div className="messPage">
-            <div className="preBookcount">
+      <div className="preBookcount">
         <h2>Pre-Bookings</h2>
         {mealCounts ? (
           <ul>
             {["breakfast", "lunch", "snacks", "dinner"].map((meal) => (
               <li key={meal}>
-                <span className="names">{meal.charAt(0).toUpperCase() + meal.slice(1)}:{" "}</span>
+                <span className="names">
+                  {meal.charAt(0).toUpperCase() + meal.slice(1)}:{" "}
+                </span>
                 {mealCounts[meal]?.willEat ?? 0}
               </li>
             ))}
@@ -138,38 +150,18 @@ function MessPage() {
         <div className="fields">
           <form onSubmit={handleSubmit}>
             <select value={day} onChange={(e) => setDay(e.target.value)}>
-              <option name="Monday" id="">
-                Monday
-              </option>
-              <option name="Tuesday" id="">
-                Tuesday
-              </option>
-              <option name="Wednesday" id="">
-                Webnesday
-              </option>
-              <option name="Thursday" id="">
-                Thursday
-              </option>
-              <option name="Friday" id="">
-                Friday
-              </option>
-              <option name="Saturday" id="">
-                Saturday
-              </option>
+              <option value="Monday">Monday</option>
+              <option value="Tuesday">Tuesday</option>
+              <option value="Wednesday">Wednesday</option>
+              <option value="Thursday">Thursday</option>
+              <option value="Friday">Friday</option>
+              <option value="Saturday">Saturday</option>
             </select>
             <select value={mealType} onChange={(e) => setMeal(e.target.value)}>
-              <option name="breakfast" id="">
-                BreakFast
-              </option>
-              <option name="lunch" id="">
-                Lunch
-              </option>
-              <option name="snacks" id="">
-                Snacks
-              </option>
-              <option name="dinner" id="">
-                Dinner
-              </option>
+              <option value="breakfast">Breakfast</option>
+              <option value="lunch">Lunch</option>
+              <option value="snacks">Snacks</option>
+              <option value="dinner">Dinner</option>
             </select>
             <input
               type="text"
@@ -178,11 +170,10 @@ function MessPage() {
               onChange={(e) => setitems(e.target.value)}
             />
             <button>Submit</button>
+            {success && <p>Menu Changed</p>}
           </form>
         </div>
       </div>
-
-
     </div>
   );
 }

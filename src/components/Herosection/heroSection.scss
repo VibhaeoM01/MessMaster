@@ -1,23 +1,21 @@
 .heroSection {
-  background-color: rgb(124, 122, 122);//
+  background-color: rgb(177, 177, 177);//
   color: white;
   padding: 4rem 0;
-  opacity: 0.8ww;
+  opacity: 0.8px  ;
   height: 40%;
   
   
 
-  .slide {
-    background-color: rgba(255, 255, 255, 0.1); // Transparent white box
+  .slide { 
+    // background-color: rgba(255, 255, 255, 0.1); // Transparent white box
     height: 200px;
     color: white;
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
+    // border: 1px solid black;
     justify-content: center;
-    align-items: center;
-    // width: 75%;
-    // border: 1px solid bla;
+    align-items: center; 
     padding: 2rem 3rem;  
     width: 300px;
     // max-width: 700px;
