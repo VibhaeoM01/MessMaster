@@ -1,3 +1,4 @@
+import Chatbot from "../../components/chatbot/chatbot";
 import Contactusform from "../../components/ContactUs/contactusform";
 import FAQs from "../../components/FAQs/FAQs";
 import Footer from "../../components/Footer/Footer";
@@ -9,6 +10,7 @@ function HomePage() {
   
   return (
     <div className="homePage">
+        <Chatbot/>
         <HeroSection/>
         <ShowCard/>
         <Contactusform/>
